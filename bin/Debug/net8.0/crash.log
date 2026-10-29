@@ -1,0 +1,17 @@
+System.ArgumentException: Requested value '`' was not found.
+   at System.Enum.TryParseByName[TStorage](RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, TStorage& result)
+   at System.Enum.TryParseByValueOrName[TUnderlying,TStorage](RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, TUnderlying& result)
+   at System.Enum.Parse[TEnum](ReadOnlySpan`1 value, Boolean ignoreCase)
+   at Avalonia.Utilities.EnumHelper.Parse[T](ReadOnlySpan`1 key, Boolean ignoreCase)
+   at Avalonia.Input.KeyGesture.ParseKey(String key)
+   at Avalonia.Input.KeyGesture.Parse(String gesture)
+   at DysinIDE.MainWindow.!XamlIlPopulate(IServiceProvider, MainWindow) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\MainWindow.axaml:line 55
+   at DysinIDE.MainWindow.!XamlIlPopulateTrampoline(MainWindow)
+   at DysinIDE.MainWindow.InitializeComponent(Boolean loadXaml) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\obj\Debug\net8.0\Avalonia.Generators\Avalonia.Generators.NameGenerator.AvaloniaNameSourceGenerator\DysinIDE.MainWindow.g.cs:line 89
+   at DysinIDE.MainWindow..ctor() in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\MainWindow.axaml.cs:line 36
+   at DysinIDE.App.OnFrameworkInitializationCompleted() in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\App.axaml.cs:line 14
+   at Avalonia.AppBuilder.SetupUnsafe()
+   at Avalonia.AppBuilder.Setup()
+   at Avalonia.AppBuilder.SetupWithLifetime(IApplicationLifetime lifetime)
+   at Avalonia.ClassicDesktopStyleApplicationLifetimeExtensions.StartWithClassicDesktopLifetime(AppBuilder builder, String[] args, Action`1 lifetimeBuilder)
+   at DysinIDE.Program.Main(String[] args) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\Program.cs:line 14

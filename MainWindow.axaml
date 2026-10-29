@@ -1,0 +1,276 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ae="using:AvaloniaEdit"
+        xmlns:m="using:DysinIDE.Models"
+        x:Class="DysinIDE.MainWindow"
+        Title="DysinIDE"
+        Width="1440" Height="880"
+        MinWidth="800" MinHeight="500">
+
+  <Grid x:Name="Root" RowDefinitions="34,*,24">
+
+    <Border Grid.Row="0" Background="{DynamicResource Bg1Brush}" BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="Auto,Auto,*,Auto">
+        <TextBlock Grid.Column="0" Text="DYSIN" FontWeight="Black" FontSize="13" LetterSpacing="3"
+                   Foreground="{DynamicResource Fg0Brush}" VerticalAlignment="Center" Margin="14,0,10,0" />
+        <Menu Grid.Column="1" VerticalAlignment="Center">
+          <MenuItem Header="File">
+            <MenuItem Header="New File" Click="OnNewFile" InputGesture="Ctrl+N" />
+            <MenuItem Header="Open File..." Click="OnOpenFile" InputGesture="Ctrl+O" />
+            <MenuItem Header="Open Folder..." Click="OnOpenFolder" InputGesture="Ctrl+K" />
+            <Separator />
+            <MenuItem Header="Save" Click="OnSave" InputGesture="Ctrl+S" />
+            <MenuItem Header="Save As..." Click="OnSaveAs" InputGesture="Ctrl+Shift+S" />
+            <MenuItem Header="Save All" Click="OnSaveAll" />
+            <Separator />
+            <MenuItem Header="Close Tab" Click="OnCloseTab" InputGesture="Ctrl+W" />
+            <MenuItem Header="Close Folder" Click="OnCloseFolder" />
+            <Separator />
+            <MenuItem Header="Exit" Click="OnExit" />
+          </MenuItem>
+          <MenuItem Header="Edit">
+            <MenuItem Header="Undo" Click="OnUndo" InputGesture="Ctrl+Z" />
+            <MenuItem Header="Redo" Click="OnRedo" InputGesture="Ctrl+Y" />
+            <Separator />
+            <MenuItem Header="Cut" Click="OnCut" InputGesture="Ctrl+X" />
+            <MenuItem Header="Copy" Click="OnCopy" InputGesture="Ctrl+C" />
+            <MenuItem Header="Paste" Click="OnPaste" InputGesture="Ctrl+V" />
+            <Separator />
+            <MenuItem Header="Find" Click="OnFind" InputGesture="Ctrl+F" />
+            <MenuItem Header="Find in Files" Click="OnFindInFiles" InputGesture="Ctrl+Shift+F" />
+            <MenuItem Header="Go to Line..." Click="OnGoToLine" InputGesture="Ctrl+G" />
+            <Separator />
+            <MenuItem Header="Duplicate Line" Click="OnDuplicateLine" InputGesture="Ctrl+D" />
+            <MenuItem Header="Delete Line" Click="OnDeleteLine" InputGesture="Ctrl+Shift+K" />
+            <MenuItem Header="Toggle Line Comment" Click="OnToggleComment" InputGesture="Ctrl+OemQuestion" />
+          </MenuItem>
+          <MenuItem Header="View">
+            <MenuItem Header="Command Palette..." Click="OnCommandPalette" InputGesture="Ctrl+Shift+P" />
+            <MenuItem Header="Quick Open..." Click="OnQuickOpen" InputGesture="Ctrl+P" />
+            <Separator />
+            <MenuItem Header="Explorer" Click="OnShowExplorer" InputGesture="Ctrl+Shift+E" />
+            <MenuItem Header="Search" Click="OnFindInFiles" />
+            <MenuItem Header="Toggle Sidebar" Click="OnToggleSidebar" InputGesture="Ctrl+B" />
+            <MenuItem Header="Toggle Terminal" Click="OnToggleTerminal"  />
+            <Separator />
+            <MenuItem Header="Word Wrap" Click="OnToggleWrap" InputGesture="Alt+Z" />
+            <MenuItem Header="Zoom In" Click="OnZoomIn" InputGesture="Ctrl+OemPlus" />
+            <MenuItem Header="Zoom Out" Click="OnZoomOut" InputGesture="Ctrl+OemMinus" />
+            <MenuItem Header="Reset Zoom" Click="OnZoomReset"  InputGesture="Ctrl+D0"/>
+          </MenuItem>
+          <MenuItem Header="Run">
+            <MenuItem Header="dotnet run" Click="OnDotnetRun" InputGesture="F5" />
+            <MenuItem Header="dotnet build" Click="OnDotnetBuild" InputGesture="Ctrl+Shift+B" />
+            <MenuItem Header="dotnet test" Click="OnDotnetTest" />
+          </MenuItem>
+          <MenuItem Header="Terminal">
+            <MenuItem Header="New Terminal" Click="OnNewTerminal" />
+            <MenuItem Header="Clear Terminal" Click="OnClearTerminal" />
+          </MenuItem>
+        </Menu>
+        <TextBlock Grid.Column="2" x:Name="TitleText" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="{DynamicResource Fg2Brush}" FontSize="12" Text="DysinIDE" />
+        <Button Grid.Column="3" Classes="flat" Margin="0,0,8,0" VerticalAlignment="Center"
+                Content="Command Palette" FontSize="11" Click="OnCommandPalette" />
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="1" x:Name="Body" ColumnDefinitions="48,Auto,Auto,*">
+
+      <Border Grid.Column="0" Background="{DynamicResource Bg1Brush}" BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,0,1,0">
+        <DockPanel>
+          <StackPanel DockPanel.Dock="Top">
+            <Button x:Name="ActExplorer" Classes="activity active" Content="▤" Click="OnShowExplorer" ToolTip.Tip="Explorer (Ctrl+Shift+E)" />
+            <Button x:Name="ActSearch" Classes="activity" Content="⌕" Click="OnFindInFiles" ToolTip.Tip="Search (Ctrl+Shift+F)" />
+            <Button x:Name="ActRun" Classes="activity" Content="▶" Click="OnDotnetRun" ToolTip.Tip="Run (F5)" />
+          </StackPanel>
+          <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Button Classes="activity" Content="⌘" Click="OnCommandPalette" ToolTip.Tip="Command Palette (Ctrl+Shift+P)" />
+          </StackPanel>
+          <Panel />
+        </DockPanel>
+      </Border>
+
+      <Border Grid.Column="1" x:Name="Sidebar" Width="270" Background="{DynamicResource Bg1Brush}">
+        <Grid>
+          <DockPanel x:Name="ExplorerPanel">
+            <Grid DockPanel.Dock="Top" Height="36" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="14,0,6,0">
+              <TextBlock x:Name="ExplorerTitle" Text="EXPLORER" FontSize="11" FontWeight="SemiBold" LetterSpacing="1.5"
+                         Foreground="{DynamicResource Fg2Brush}" VerticalAlignment="Center" />
+              <Button Grid.Column="1" Classes="flat" Content="+" ToolTip.Tip="New File" Click="OnTreeNewFile" />
+              <Button Grid.Column="2" Classes="flat" Content="▣" ToolTip.Tip="New Folder" Click="OnTreeNewFolder" />
+              <Button Grid.Column="3" Classes="flat" Content="⟳" ToolTip.Tip="Refresh" Click="OnRefreshTree" />
+              <Button Grid.Column="4" Classes="flat" Content="−" ToolTip.Tip="Collapse All" Click="OnCollapseAll" />
+            </Grid>
+            <Panel>
+              <StackPanel x:Name="NoFolderPanel" Margin="16,12" Spacing="10">
+                <TextBlock Text="No folder opened" Foreground="{DynamicResource Fg2Brush}" />
+                <Button Content="Open Folder" Click="OnOpenFolder" HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" Background="White" Foreground="Black" />
+              </StackPanel>
+              <TreeView x:Name="FileTree" Background="Transparent" BorderThickness="0" Padding="0"
+                        DoubleTapped="OnTreeDoubleTapped" KeyDown="OnTreeKeyDown">
+                <TreeView.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="New File" Click="OnTreeNewFile" />
+                    <MenuItem Header="New Folder" Click="OnTreeNewFolder" />
+                    <Separator />
+                    <MenuItem Header="Rename" Click="OnTreeRename" InputGesture="F2" />
+                    <MenuItem Header="Delete" Click="OnTreeDelete" InputGesture="Delete" />
+                    <Separator />
+                    <MenuItem Header="Open in Terminal" Click="OnTreeOpenTerminal" />
+                    <MenuItem Header="Copy Path" Click="OnTreeCopyPath" />
+                  </ContextMenu>
+                </TreeView.ContextMenu>
+                <TreeView.ItemTemplate>
+                  <TreeDataTemplate DataType="m:FileNode" ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Spacing="7" Height="22">
+                      <TextBlock Text="{Binding Icon}" Foreground="{DynamicResource Fg2Brush}" VerticalAlignment="Center" FontSize="11" />
+                      <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                    </StackPanel>
+                  </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+              </TreeView>
+            </Panel>
+          </DockPanel>
+
+          <DockPanel x:Name="SearchPanelHost" IsVisible="False">
+            <TextBlock DockPanel.Dock="Top" Text="SEARCH" FontSize="11" FontWeight="SemiBold" LetterSpacing="1.5"
+                       Foreground="{DynamicResource Fg2Brush}" Margin="14,11,0,8" />
+            <StackPanel DockPanel.Dock="Top" Margin="10,0,10,8" Spacing="6">
+              <TextBox x:Name="SearchBox" Watermark="Search in files" KeyDown="OnSearchKeyDown" />
+              <CheckBox x:Name="SearchCase" Content="Match case" FontSize="12" />
+              <TextBlock x:Name="SearchSummary" FontSize="11" Foreground="{DynamicResource Fg2Brush}" />
+            </StackPanel>
+            <ListBox x:Name="SearchResults" DoubleTapped="OnSearchResultOpen" KeyDown="OnSearchResultKey">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding Display}" Margin="12,3" FontSize="12" TextTrimming="CharacterEllipsis" />
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </DockPanel>
+        </Grid>
+      </Border>
+
+      <GridSplitter Grid.Column="2" x:Name="SidebarSplitter" Width="1" Background="{DynamicResource LineBrush}"
+                    ResizeDirection="Columns" ResizeBehavior="PreviousAndNext" />
+
+      <Grid Grid.Column="3" x:Name="EditorArea" RowDefinitions="36,*,Auto,Auto">
+
+        <Border Grid.Row="0" Background="{DynamicResource Bg1Brush}" BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,0,0,1">
+          <ListBox x:Name="TabList" Classes="tabs" SelectionChanged="OnTabSelected"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal" />
+              </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+              <DataTemplate DataType="m:EditorTab">
+                <Border Padding="14,0,6,0" Height="35" PointerPressed="OnTabPointerPressed"
+                        BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,0,1,0">
+                  <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding DirtyMarker}" Foreground="{DynamicResource Fg0Brush}" FontSize="10" VerticalAlignment="Center" />
+                    <Button Classes="flat" Content="✕" FontSize="10" Padding="5,3" Click="OnTabClose" Tag="{Binding}" />
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </Border>
+
+        <Panel Grid.Row="1" Background="{DynamicResource Bg0Brush}">
+          <ae:TextEditor x:Name="Editor" IsVisible="False" Background="{DynamicResource Bg0Brush}"
+                         Foreground="{DynamicResource Fg1Brush}" ShowLineNumbers="True"
+                         HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
+                         FontSize="14" Padding="4,8,0,8" />
+          <StackPanel x:Name="Welcome" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6">
+            <TextBlock Text="DysinIDE" FontSize="44" FontWeight="Black" Foreground="{DynamicResource Fg0Brush}" HorizontalAlignment="Center" />
+            <TextBlock Text="Black. White. Focused." Foreground="{DynamicResource Fg2Brush}" HorizontalAlignment="Center" Margin="0,0,0,22" />
+            <Grid ColumnDefinitions="Auto,24,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto" HorizontalAlignment="Center">
+              <TextBlock Grid.Row="0" Text="Command Palette" Foreground="{DynamicResource Fg2Brush}" />
+              <TextBlock Grid.Row="0" Grid.Column="2" Text="Ctrl+Shift+P" />
+              <TextBlock Grid.Row="1" Text="Quick Open" Foreground="{DynamicResource Fg2Brush}" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="1" Grid.Column="2" Text="Ctrl+P" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="2" Text="Open Folder" Foreground="{DynamicResource Fg2Brush}" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="2" Grid.Column="2" Text="Ctrl+K" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="3" Text="Find in Files" Foreground="{DynamicResource Fg2Brush}" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="3" Grid.Column="2" Text="Ctrl+Shift+F" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="4" Text="Toggle Terminal" Foreground="{DynamicResource Fg2Brush}" Margin="0,6,0,0" />
+              <TextBlock Grid.Row="4" Grid.Column="2" Text="Ctrl+`" Margin="0,6,0,0" />
+            </Grid>
+          </StackPanel>
+        </Panel>
+
+        <GridSplitter Grid.Row="2" x:Name="TerminalSplitter" Height="1" Background="{DynamicResource LineBrush}"
+                      ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" IsVisible="False" />
+
+        <Border Grid.Row="3" x:Name="TerminalPanel" Height="220" Background="{DynamicResource Bg1Brush}" IsVisible="False">
+          <DockPanel>
+            <Grid DockPanel.Dock="Top" Height="32" ColumnDefinitions="Auto,*,Auto,Auto,Auto" Margin="14,0,6,0">
+              <TextBlock Text="TERMINAL" FontSize="11" FontWeight="SemiBold" LetterSpacing="1.5"
+                         Foreground="{DynamicResource Fg0Brush}" VerticalAlignment="Center" />
+              <Button Grid.Column="2" Classes="flat" Content="+" ToolTip.Tip="New Terminal" Click="OnNewTerminal" />
+              <Button Grid.Column="3" Classes="flat" Content="⌫" ToolTip.Tip="Clear" Click="OnClearTerminal" />
+              <Button Grid.Column="4" Classes="flat" Content="✕" ToolTip.Tip="Close Panel" Click="OnToggleTerminal" />
+            </Grid>
+            <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="14,6">
+              <Grid ColumnDefinitions="Auto,*">
+                <TextBlock Text="❯" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="{DynamicResource Fg0Brush}" />
+                <TextBox Grid.Column="1" x:Name="TerminalInput" BorderThickness="0" Background="Transparent"
+                         FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
+                         KeyDown="OnTerminalKeyDown" />
+              </Grid>
+            </Border>
+            <TextBox x:Name="TerminalOutput" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
+                     Background="Transparent" BorderThickness="0" Padding="14,0"
+                     FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
+                     FontSize="12.5" />
+          </DockPanel>
+        </Border>
+      </Grid>
+    </Grid>
+
+    <Border Grid.Row="2" Background="White">
+      <Grid ColumnDefinitions="Auto,*,Auto">
+        <StackPanel Orientation="Horizontal" Spacing="16" Margin="12,0">
+          <TextBlock x:Name="StatusBranch" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" FontWeight="SemiBold" />
+          <TextBlock x:Name="StatusFolder" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="18" Margin="12,0">
+          <TextBlock x:Name="StatusPosition" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" />
+          <TextBlock x:Name="StatusSelection" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" />
+          <TextBlock Text="Spaces: 4" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" />
+          <TextBlock Text="UTF-8" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" />
+          <TextBlock x:Name="StatusLanguage" Foreground="Black" FontSize="11.5" VerticalAlignment="Center" FontWeight="SemiBold" />
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="0" Grid.RowSpan="3" x:Name="PaletteOverlay" IsVisible="False" Background="#99000000"
+          PointerPressed="OnOverlayPressed">
+      <Border Width="600" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,0,0"
+              Background="{DynamicResource Bg2Brush}" BorderBrush="{DynamicResource Fg3Brush}" BorderThickness="1"
+              CornerRadius="8" Padding="8" PointerPressed="OnPalettePressed">
+        <StackPanel Spacing="6">
+          <TextBox x:Name="PaletteBox" FontSize="14" Padding="10,8" TextChanged="OnPaletteTextChanged" KeyDown="OnPaletteKeyDown" />
+          <ListBox x:Name="PaletteList" MaxHeight="340" DoubleTapped="OnPaletteDoubleTapped">
+            <ListBox.ItemTemplate>
+              <DataTemplate DataType="m:PaletteItem">
+                <Grid ColumnDefinitions="*,Auto" Margin="10,6">
+                  <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Grid.Column="1" Text="{Binding Detail}" Foreground="{DynamicResource Fg2Brush}" FontSize="12" Margin="16,0,0,0" />
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </StackPanel>
+      </Border>
+    </Grid>
+
+  </Grid>
+</Window>

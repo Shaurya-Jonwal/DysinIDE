@@ -1,0 +1,159 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Style Selector="Window">
+    <Setter Property="Background" Value="{DynamicResource Bg0Brush}" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+    <Setter Property="FontFamily" Value="Inter, Segoe UI, sans-serif" />
+    <Setter Property="FontSize" Value="13" />
+  </Style>
+
+  <Style Selector="TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+  </Style>
+
+  <Style Selector="Border.panel">
+    <Setter Property="Background" Value="{DynamicResource Bg1Brush}" />
+  </Style>
+
+  <Style Selector="Border.sep">
+    <Setter Property="Background" Value="{DynamicResource LineBrush}" />
+  </Style>
+
+  <Style Selector="Button.flat">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg2Brush}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="6,3" />
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+  <Style Selector="Button.flat:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg0Brush}" />
+  </Style>
+  <Style Selector="Button.flat:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+  </Style>
+
+  <Style Selector="Button.activity">
+    <Setter Property="Width" Value="48" />
+    <Setter Property="Height" Value="48" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg3Brush}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FontSize" Value="18" />
+  </Style>
+  <Style Selector="Button.activity:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg0Brush}" />
+  </Style>
+  <Style Selector="Button.activity.active /template/ ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource Fg0Brush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Fg0Brush}" />
+    <Setter Property="BorderThickness" Value="2,0,0,0" />
+  </Style>
+
+  <Style Selector="TextBox">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg0Brush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+    <Setter Property="CaretBrush" Value="{DynamicResource Fg0Brush}" />
+    <Setter Property="SelectionBrush" Value="#55FFFFFF" />
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+  <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+    <Setter Property="BorderBrush" Value="{DynamicResource Fg2Brush}" />
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+  </Style>
+  <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Fg3Brush}" />
+  </Style>
+
+  <Style Selector="Menu">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="MenuItem">
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Padding" Value="8,4" />
+  </Style>
+  <Style Selector="MenuItem:selected /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+  </Style>
+  <Style Selector="Separator">
+    <Setter Property="Background" Value="{DynamicResource LineBrush}" />
+  </Style>
+
+  <Style Selector="ContextMenu">
+    <Setter Property="Background" Value="{DynamicResource Bg2Brush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+  </Style>
+
+  <Style Selector="TreeViewItem">
+    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+    <Setter Property="MinHeight" Value="22" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+  </Style>
+  <Style Selector="TreeViewItem:pointerover /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+  </Style>
+  <Style Selector="TreeViewItem:selected /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+  </Style>
+  <Style Selector="TreeViewItem:selected:focus /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+  </Style>
+
+  <Style Selector="ListBox">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="ListBoxItem">
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+  </Style>
+  <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+  </Style>
+  <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+  </Style>
+  <Style Selector="ListBoxItem:selected:focus /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg4Brush}" />
+  </Style>
+
+  <Style Selector="ListBox.tabs ListBoxItem">
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="Background" Value="{DynamicResource Bg1Brush}" />
+  </Style>
+  <Style Selector="ListBox.tabs ListBoxItem:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg2Brush}" />
+  </Style>
+  <Style Selector="ListBox.tabs ListBoxItem:selected /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg0Brush}" />
+  </Style>
+  <Style Selector="ListBox.tabs ListBoxItem:selected:focus /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource Bg0Brush}" />
+  </Style>
+
+  <Style Selector="ScrollBar">
+    <Setter Property="AllowAutoHide" Value="False" />
+  </Style>
+
+  <Style Selector="ToolTip">
+    <Setter Property="Background" Value="{DynamicResource Bg3Brush}" />
+    <Setter Property="Foreground" Value="{DynamicResource Fg0Brush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+  </Style>
+
+  <Style Selector="CheckBox">
+    <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
+  </Style>
+
+</Styles>
