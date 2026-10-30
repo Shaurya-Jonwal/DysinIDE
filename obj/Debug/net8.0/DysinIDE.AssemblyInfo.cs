@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DysinIDE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52eb6de052070c595a07e7335831646a6be53f07")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e1933b4a4ed84f48028a814aa48f3d0cdeb478f")]
 [assembly: System.Reflection.AssemblyProductAttribute("DysinIDE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DysinIDE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
