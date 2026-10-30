@@ -144,6 +144,7 @@ C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\DysinIDE.Gene
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\DysinIDE.AssemblyInfoInputs.cache
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\DysinIDE.AssemblyInfo.cs
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\DysinIDE.csproj.CoreCompileInputs.cache
+C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\DysinIDE.sourcelink.json
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\Avalonia\DysinIDE.dll
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\Avalonia\DysinIDE.pdb
 C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\refint\Avalonia\DysinIDE.dll

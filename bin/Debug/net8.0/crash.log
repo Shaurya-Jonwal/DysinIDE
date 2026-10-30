@@ -1,17 +1,53 @@
-System.ArgumentException: Requested value '`' was not found.
-   at System.Enum.TryParseByName[TStorage](RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, TStorage& result)
-   at System.Enum.TryParseByValueOrName[TUnderlying,TStorage](RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, TUnderlying& result)
-   at System.Enum.Parse[TEnum](ReadOnlySpan`1 value, Boolean ignoreCase)
-   at Avalonia.Utilities.EnumHelper.Parse[T](ReadOnlySpan`1 key, Boolean ignoreCase)
-   at Avalonia.Input.KeyGesture.ParseKey(String key)
-   at Avalonia.Input.KeyGesture.Parse(String gesture)
-   at DysinIDE.MainWindow.!XamlIlPopulate(IServiceProvider, MainWindow) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\MainWindow.axaml:line 55
+System.InvalidOperationException: Could not create glyphTypeface. Font family: IBM Plex Mono (key: avares://DysinIDE/assets/ibm-plex-mono). Style: Normal. Weight: Normal. Stretch: Normal
+   at Avalonia.Media.Typeface.get_GlyphTypeface()
+   at Avalonia.Media.TextFormatting.TextRunProperties.get_CachedGlyphTypeface()
+   at Avalonia.Media.TextFormatting.TextCharacters.CreateShapeableRun(ReadOnlyMemory`1 text, TextRunProperties defaultProperties, SByte biDiLevel, FontManager fontManager, TextRunProperties& previousProperties)
+   at Avalonia.Media.TextFormatting.TextCharacters.GetShapeableCharacters(ReadOnlyMemory`1 text, SByte biDiLevel, FontManager fontManager, TextRunProperties& previousProperties, RentedList`1 results)
+   at Avalonia.Media.TextFormatting.TextFormatterImpl.CoalesceLevels(IReadOnlyList`1 textCharacters, ReadOnlySpan`1 levels, FontManager fontManager, RentedList`1 processedRuns)
+   at Avalonia.Media.TextFormatting.TextFormatterImpl.ShapeTextRuns(IReadOnlyList`1 textRuns, TextParagraphProperties paragraphProperties, FormattingObjectPool objectPool, FontManager fontManager, FlowDirection& resolvedFlowDirection)
+   at Avalonia.Media.TextFormatting.TextFormatterImpl.FormatLine(ITextSource textSource, Int32 firstTextSourceIndex, Double paragraphWidth, TextParagraphProperties paragraphProperties, TextLineBreak previousLineBreak)
+   at AvaloniaEdit.Rendering.TextView.CalculateDefaultTextMetrics()
+   at AvaloniaEdit.Rendering.TextView.InvalidateDefaultTextMetrics()
+   at AvaloniaEdit.Rendering.TextView.OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+   at Avalonia.AvaloniaObject.OnPropertyChangedCore(AvaloniaPropertyChangedEventArgs change)
+   at Avalonia.Animation.Animatable.OnPropertyChangedCore(AvaloniaPropertyChangedEventArgs change)
+   at Avalonia.AvaloniaObject.RaisePropertyChanged[T](AvaloniaProperty`1 property, Optional`1 oldValue, BindingValue`1 newValue, BindingPriority priority, Boolean isEffectiveValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.NotifyValueChanged(ValueStore owner, StyledProperty`1 property, T oldValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.SetAndRaiseCore(ValueStore owner, StyledProperty`1 property, T value, BindingPriority priority, Boolean isOverriddenCurrentValue, Boolean isCoercedDefaultValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.SetLocalValueAndRaise(ValueStore owner, StyledProperty`1 property, T value)
+   at Avalonia.PropertyStore.ValueStore.SetLocalValue[T](StyledProperty`1 property, T value)
+   at Avalonia.PropertyStore.ValueStore.SetValue[T](StyledProperty`1 property, T value, BindingPriority priority)
+   at Avalonia.AvaloniaObject.SetValue[T](StyledProperty`1 property, T value, BindingPriority priority)
+   at Avalonia.StyledProperty`1.RouteSetValue(AvaloniaObject target, Object value, BindingPriority priority)
+   at Avalonia.AvaloniaObject.SetValue(AvaloniaProperty property, Object value, BindingPriority priority)
+   at AvaloniaEdit.TextEditor.OnFontFamilyPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+   at Avalonia.Reactive.AnonymousObserver`1.OnNext(T value)
+   at Avalonia.Reactive.LightweightObservableBase`1.PublishNext(T value)
+   at Avalonia.Reactive.LightweightSubject`1.OnNext(T value)
+   at Avalonia.AvaloniaProperty`1.NotifyChanged(AvaloniaPropertyChangedEventArgs`1 e)
+   at Avalonia.AvaloniaObject.RaisePropertyChanged[T](AvaloniaProperty`1 property, Optional`1 oldValue, BindingValue`1 newValue, BindingPriority priority, Boolean isEffectiveValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.NotifyValueChanged(ValueStore owner, StyledProperty`1 property, T oldValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.SetAndRaiseCore(ValueStore owner, StyledProperty`1 property, T value, BindingPriority priority, Boolean isOverriddenCurrentValue, Boolean isCoercedDefaultValue)
+   at Avalonia.PropertyStore.EffectiveValue`1.SetLocalValueAndRaise(ValueStore owner, StyledProperty`1 property, T value)
+   at Avalonia.PropertyStore.EffectiveValue`1.SetLocalValueAndRaise(ValueStore owner, AvaloniaProperty property, Object value)
+   at Avalonia.PropertyStore.ValueStore.SetLocalValue(AvaloniaProperty property, Object value)
+   at Avalonia.PropertyStore.ValueStore.Avalonia.Data.Core.IBindingExpressionSink.OnChanged(UntypedBindingExpressionBase instance, Boolean hasValueChanged, Boolean hasErrorChanged, Object value, BindingError error)
+   at Avalonia.Data.Core.UntypedBindingExpressionBase.PublishValue(Object value, BindingError error)
+   at Avalonia.Markup.Xaml.MarkupExtensions.DynamicResourceExpression.PublishValue()
+   at Avalonia.Markup.Xaml.MarkupExtensions.DynamicResourceExpression.StartCore()
+   at Avalonia.Data.Core.UntypedBindingExpressionBase.Start(Boolean produceValue)
+   at Avalonia.Data.Core.UntypedBindingExpressionBase.AttachAndStart(IBindingExpressionSink subscriber, AvaloniaObject target, AvaloniaProperty targetProperty, BindingPriority priority)
+   at Avalonia.PropertyStore.ValueStore.AddBinding(AvaloniaProperty property, UntypedBindingExpressionBase source)
+   at Avalonia.AvaloniaObject.Bind(AvaloniaProperty property, IBinding binding, Object anchor)
+   at Avalonia.AvaloniaObject.Bind(AvaloniaProperty property, IBinding binding)
+   at Avalonia.AvaloniaObjectExtensions.Bind(AvaloniaObject target, AvaloniaProperty property, IBinding binding, Object anchor)
+   at DysinIDE.MainWindow.!XamlIlPopulate(IServiceProvider, MainWindow) in C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\MainWindow.axaml:line 189
    at DysinIDE.MainWindow.!XamlIlPopulateTrampoline(MainWindow)
-   at DysinIDE.MainWindow.InitializeComponent(Boolean loadXaml) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\obj\Debug\net8.0\Avalonia.Generators\Avalonia.Generators.NameGenerator.AvaloniaNameSourceGenerator\DysinIDE.MainWindow.g.cs:line 89
-   at DysinIDE.MainWindow..ctor() in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\MainWindow.axaml.cs:line 36
-   at DysinIDE.App.OnFrameworkInitializationCompleted() in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\App.axaml.cs:line 14
+   at DysinIDE.MainWindow.InitializeComponent(Boolean loadXaml) in C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\obj\Debug\net8.0\Avalonia.Generators\Avalonia.Generators.NameGenerator.AvaloniaNameSourceGenerator\DysinIDE.MainWindow.g.cs:line 89
+   at DysinIDE.MainWindow..ctor() in C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\MainWindow.axaml.cs:line 41
+   at DysinIDE.App.OnFrameworkInitializationCompleted() in C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\App.axaml.cs:line 14
    at Avalonia.AppBuilder.SetupUnsafe()
    at Avalonia.AppBuilder.Setup()
    at Avalonia.AppBuilder.SetupWithLifetime(IApplicationLifetime lifetime)
    at Avalonia.ClassicDesktopStyleApplicationLifetimeExtensions.StartWithClassicDesktopLifetime(AppBuilder builder, String[] args, Action`1 lifetimeBuilder)
-   at DysinIDE.Program.Main(String[] args) in C:\Users\sunil\OneDrive\Documents\DysinIDE\DysinIDE\Program.cs:line 14
+   at DysinIDE.Program.Main(String[] args) in C:\Users\sunil\OneDrive\Documents\GitHub\DysinIDE\Program.cs:line 14

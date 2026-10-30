@@ -32,8 +32,7 @@ public partial class MainWindow
         SearchSummary.Text = "";
         ShowSidebarPanel(true);
         UpdateChrome();
-        if (_terminal.IsRunning)
-            _terminal.Send(OperatingSystem.IsWindows() ? $"cd /d \"{path}\"" : $"cd \"{path}\"");
+        _terminal.SetWorkingDirectory(path);
     }
 
     private void OnCloseFolder(object? sender, RoutedEventArgs e)

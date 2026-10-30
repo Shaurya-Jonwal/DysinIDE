@@ -2,6 +2,16 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\favicon.ico" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-Regular.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-Bold.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-Italic.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-BoldItalic.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-Medium.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-MediumItalic.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-SemiBold.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-SemiBoldItalic.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-Light.ttf" />
+    <AvaloniaResource Include="Assets\ibm-plex-mono\IBMPlexMono-LightItalic.ttf" />
   </ItemGroup>
 
   <PropertyGroup>

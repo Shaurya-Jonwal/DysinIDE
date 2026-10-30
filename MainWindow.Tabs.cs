@@ -49,6 +49,18 @@ public partial class MainWindow
     {
         if (_registry is null || _textMate is null)
             return;
+
+        var isPython = tab.Language == "Python";
+        _python.Active = isPython;
+        Editor.TextArea.IndentationStrategy = isPython ? _pythonIndent : _csharpIndent;
+        if (isPython)
+        {
+            _textMate.SetGrammar(null);
+            Editor.TextArea.TextView.Redraw();
+            return;
+        }
+
+        Editor.TextArea.TextView.Redraw();
         var ext = LanguageService.ExtensionFor(tab.Path).ToLowerInvariant();
         if (ext is ".axaml" or ".xaml" or ".csproj" or ".props" or ".targets")
             ext = ".xml";

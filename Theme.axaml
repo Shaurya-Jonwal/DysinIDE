@@ -4,7 +4,7 @@
   <Style Selector="Window">
     <Setter Property="Background" Value="{DynamicResource Bg0Brush}" />
     <Setter Property="Foreground" Value="{DynamicResource Fg1Brush}" />
-    <Setter Property="FontFamily" Value="Inter, Segoe UI, sans-serif" />
+    <Setter Property="FontFamily" Value="Inter , Segoe UI, sans-serif" />
     <Setter Property="FontSize" Value="13" />
   </Style>
 

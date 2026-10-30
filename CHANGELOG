@@ -1,0 +1,45 @@
+# Changelog
+
+All notable changes to DysinIDE are documented in this file.
+
+The format is based on Keep a Changelog.
+
+## [1.1.1] - 2026-10-30
+
+### Added
+- Introduced a new font system.
+- Added text highlighting functionality.
+
+### Changed
+- Refined the user interface and overall user experience.
+- Updated existing application functionality.
+
+### Fixed
+- Fixed issues affecting application stability.
+- Fixed terminal output handling.
+- Resolved issues that could cause the terminal to crash.
+
+### Improved
+- Refined code editor responsiveness.
+- Improved terminal behaviour.
+- Made general application performance improvements.
+
+### Known Issues
+- Terminal behaviour remains inconsistent and requires further improvements.
+
+### Planned
+- Further terminal improvements are planned for v1.1.2.
+- Additional compiler support is in development.
+
+---
+
+## [1.0.1] - Previous Release
+
+### Added
+- Introduced the typing system.
+
+### Changed
+- Updated file system functionality.
+
+### Fixed
+- Fixed issues with the graphical user interface theme.

@@ -27,6 +27,9 @@ public partial class MainWindow : Window
     private AvaloniaEdit.TextMate.TextMate.Installation? _textMate;
     private RegistryOptions? _registry;
     private SearchPanel? _searchPanel;
+    private readonly PythonColorizer _python = new();
+    private readonly PythonIndentationStrategy _pythonIndent = new();
+    private AvaloniaEdit.Indentation.IIndentationStrategy? _csharpIndent;
     private string? _workspace;
     private EditorTab? _current;
     private bool _switching;
@@ -46,7 +49,8 @@ public partial class MainWindow : Window
         FileTree.ItemsSource = _roots;
         AddHandler(KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
         _terminal.Output += text => Dispatcher.UIThread.Post(() => AppendTerminal(text));
-        _terminal.Exited += () => Dispatcher.UIThread.Post(() => AppendTerminal("\n[process exited]\n"));
+        _terminal.Finished += (code, stopped) => Dispatcher.UIThread.Post(() => OnTerminalFinished(code, stopped));
+        TerminalInput.AddHandler(KeyDownEvent, OnTerminalKeyDown, RoutingStrategies.Tunnel);
         UpdateChrome();
         UpdateStatus();
     }
@@ -64,7 +68,9 @@ public partial class MainWindow : Window
         Editor.TextArea.TextView.CurrentLineBorder = new Pen(new SolidColorBrush(Color.Parse("#1E1E1E")), 1);
         Editor.TextArea.SelectionBrush = new SolidColorBrush(Color.Parse("#3A3A3A"));
         Editor.TextArea.SelectionCornerRadius = 2;
-        Editor.TextArea.IndentationStrategy = new CSharpIndentationStrategy(Editor.Options);
+        _csharpIndent = new CSharpIndentationStrategy(Editor.Options);
+        Editor.TextArea.IndentationStrategy = _csharpIndent;
+        Editor.TextArea.TextView.LineTransformers.Add(_python);
         Editor.TextArea.Caret.PositionChanged += (_, _) => UpdateStatus();
         Editor.TextArea.SelectionChanged += (_, _) => UpdateStatus();
         Editor.TextArea.TextEntering += OnTextEntering;
@@ -160,7 +166,7 @@ public partial class MainWindow : Window
 
         if (e.Key == Key.F5)
         {
-            OnDotnetRun(this, new RoutedEventArgs());
+            RunCurrentFile();
             e.Handled = true;
             return;
         }
@@ -173,6 +179,9 @@ public partial class MainWindow : Window
         }
 
         if (!ctrl)
+            return;
+
+        if (e.Key == Key.D && TerminalInput.IsFocused)
             return;
 
         var handled = true;

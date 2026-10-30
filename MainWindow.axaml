@@ -186,7 +186,7 @@
           <ae:TextEditor x:Name="Editor" IsVisible="False" Background="{DynamicResource Bg0Brush}"
                          Foreground="{DynamicResource Fg1Brush}" ShowLineNumbers="True"
                          HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                         FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
+                         FontFamily="{DynamicResource UiFont}"
                          FontSize="14" Padding="4,8,0,8" />
           <StackPanel x:Name="Welcome" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6">
             <TextBlock Text="DysinIDE" FontSize="44" FontWeight="Black" Foreground="{DynamicResource Fg0Brush}" HorizontalAlignment="Center" />
@@ -222,13 +222,12 @@
               <Grid ColumnDefinitions="Auto,*">
                 <TextBlock Text="❯" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="{DynamicResource Fg0Brush}" />
                 <TextBox Grid.Column="1" x:Name="TerminalInput" BorderThickness="0" Background="Transparent"
-                         FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
-                         KeyDown="OnTerminalKeyDown" />
+                         FontFamily="{DynamicResource UiFont}" />
               </Grid>
             </Border>
             <TextBox x:Name="TerminalOutput" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
                      Background="Transparent" BorderThickness="0" Padding="14,0"
-                     FontFamily="Cascadia Code, JetBrains Mono, Consolas, Menlo, DejaVu Sans Mono, monospace"
+                     FontFamily="{DynamicResource UiFont}"
                      FontSize="12.5" />
           </DockPanel>
         </Border>
